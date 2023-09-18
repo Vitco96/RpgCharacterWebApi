@@ -8,6 +8,7 @@ namespace Tutorial_proj
         public AutoMapperProfile()
         {
             CreateMap<Character, GetCharacterDto>();
+            CreateMap<AddCharacterDto, Character>();
         }
     }
 }

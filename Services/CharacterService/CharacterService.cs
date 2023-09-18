@@ -30,7 +30,9 @@ namespace Tutorial_proj.Services.CharacterService
         public async Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDto newCharacter)
         {
             var serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
-            characters.Add(_mapper.Map<Character>(newCharacter));
+            var character = _mapper.Map<Character>(newCharacter);
+            character.Id = characters.Max(c => c.Id) + 1;
+            characters.Add(character);
             serviceResponse.Data = characters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToList();
             return serviceResponse;
         }
@@ -48,6 +50,23 @@ namespace Tutorial_proj.Services.CharacterService
             var character = characters.FirstOrDefault(c => c.Id == id);
 
             serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetCharacterDto>> UpdateCharacter(UpdateCharacterDto updatedharacter)
+        {
+            var serviceResponse = new ServiceResponse<GetCharacterDto>();
+            var character = characters.FirstOrDefault(c => c.Id == updatedharacter.Id);
+
+            character.Name = updatedharacter.Name;
+            character.Hitpoints = updatedharacter.Hitpoints;
+            character.Strenght = updatedharacter.Strenght;
+            character.Defense = updatedharacter.Defense;
+            character.Intelligence = updatedharacter.Intelligence;
+            character.Class = updatedharacter.Class;
+
+            serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
+
             return serviceResponse;
         }
 
