@@ -51,6 +51,13 @@ namespace Tutorial_proj.Services.CharacterService
             var character = characters.FirstOrDefault(c => c.Id == id);
 
             serviceResponse.Data = _mapper.Map<GetCharacterDto>(character);
+        #region Methods
+
+        public async Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDto newCharacter)
+        {
+            var serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+            var character = _mapper.Map<Character>(newCharacter);
+            
             return serviceResponse;
         }
 
