@@ -12,6 +12,7 @@ namespace Tutorial_proj.Data
         #region Properties
 
         public DbSet<Character> Characters => Set<Character>();
+        public DbSet<User> Users => Set<User>();
 
         #endregion
 

@@ -14,5 +14,6 @@ namespace Tutorial_proj.Models
         public int Defense { get; set; } = 10;
         public int Intelligence { get; set; } = 10;
         public RpgClass Class { get;set; } = RpgClass.Knitght;
+        public User? User { get; set; }
     }
 }
